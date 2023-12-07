@@ -48,7 +48,7 @@ pipeline
             steps
             {
                 sh "rm -rf *"
-                sh "git clone https://github.com/Poojamungase/git-project.git -b 23Q1"
+                sh "git clone https://github.com/Poojamungase/git-project.git -b 23Q2"
                 sh "sudo chmod -R 777 /mnt"
                 sh "sudo yum install httpd -y"
                 sh "sudo service httpd start"
@@ -56,8 +56,41 @@ pipeline
                 sh "sudo cp -r git-project/puja.html /var/www/html/"
                 sh "sudo chmod -R 777 /var/www/html/puja.html"
             }
-    
-            
+ 	stage("On SLAVE 2 Machine")
+        {
+            agent
+            {
+                label
+                {
+                    label "slave2"
+                }
+                
+            }   
+            stage("Branch 2023-Q1 Cloning")
+        {
+            steps
+            {
+                sh "rm -rf *"
+                sh "git clone https://github.com/Poojamungase/git-project.git -b 23Q3"
+                sh "sudo chmod -R 777 /mnt"
+            }
+        }
+        stage("Installation Httpd")
+        {
+            steps
+            {
+                sh "sudo yum install httpd -y"
+                sh "sudo service httpd start"
+                sh "sudo chkconfig httpd on"
+            }
+        }
+        stage("Deploying")
+        {
+            steps
+            {
+                sh "sudo cp -r git-project/puja.html /var/www/html/"
+                sh "sudo chmod -R 777 /var/www/html/puja.html"
+            }
         }
     }
 }
