@@ -9,7 +9,7 @@ pipeline
     }
     stages
     {
-        stage("Branch 23Q1 Cloning")
+        stage("Branch 2023-Q1 Cloning")
         {
             steps
             {
@@ -31,8 +31,8 @@ pipeline
         {
             steps
             {
-                sh "sudo cp -r git-project/puja.html /var/www/html/"
-                sh "sudo chmod -R 777 /var/www/html/puja.html"
+                sh "sudo cp -r git-project/index.html /var/www/html/"
+                sh "sudo chmod -R 777 /var/www/html/index.html"
             }
         }
         stage("On SLAVE 2 Machine")
@@ -53,9 +53,11 @@ pipeline
                 sh "sudo yum install httpd -y"
                 sh "sudo service httpd start"
                 sh "sudo chkconfig httpd on"
-                sh "sudo cp -r git-project/puja.html /var/www/html/"
-                sh "sudo chmod -R 777 /var/www/html/puja.html"
+                sh "sudo cp -r git-project/index.html /var/www/html/"
+                sh "sudo chmod -R 777 /var/www/html/index.html"
             }
+    
+            
         }
     }
 }
