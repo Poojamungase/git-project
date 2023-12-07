@@ -56,7 +56,7 @@ pipeline
                 sh "sudo cp -r git-project/puja.html /var/www/html/"
                 sh "sudo chmod -R 777 /var/www/html/puja.html"
             }
- 	stage("On SLAVE 2 Machine")
+ 	    stage("On SLAVE 3 Machine")
         {
             agent
             {
